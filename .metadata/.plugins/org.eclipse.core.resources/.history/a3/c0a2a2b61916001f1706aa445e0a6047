@@ -1,0 +1,81 @@
+package dao;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import datos.Dispositivo;
+import datos.Evento;
+
+public class EventoDAO {
+	private static Session session;
+	private Transaction transaction;
+	private EventoDAO instance;
+
+	EventoDAO getInstance() {
+		if (instance == null) {
+			instance = new EventoDAO();
+		}
+		return instance;
+	}
+
+	protected void iniciaOperacion() throws HibernateException {
+		session = HibernateUtil.getSessionFactory().openSession();
+		transaction = session.beginTransaction();
+	}
+
+	protected void manejaExcepcion(HibernateException he) throws HibernateException {
+		transaction.rollback();
+		throw new HibernateException("ERROR en la capa de acceso a datos", he);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Evento> traer() {
+		List<Evento> lista = null;
+
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("FROM Evento").list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Evento> traer(Dispositivo dispositivo, LocalDateTime fechaHora) {
+		List<Evento> lista = null;
+
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("FROM Evento e where e.dispositivo=:dispositivo AND e.fechaHora=:fechaHora")
+					.setParameter("dispositivo", dispositivo).setParameter("fechaHora", fechaHora).list();
+		} finally {
+			session.close();
+		}
+
+		return lista;
+	}
+
+	public boolean agregar(String descripcion, Dispositivo dispositivo, LocalDateTime fechaHora) throws Exception {
+		if (traer(dispositivo, fechaHora) != null) {
+			throw new Exception("error");
+		}
+
+		try {
+			iniciaOperacion();
+			session.update(new Evento(descripcion, dispositivo, fechaHora));
+			transaction.commit();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return true;
+	}
+
+}

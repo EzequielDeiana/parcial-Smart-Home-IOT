@@ -1,0 +1,29 @@
+package negocio;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import datos.Dispositivo;
+import datos.Evento;
+
+public class EventoABM {
+	public static EventoABM instance;
+	
+	private EventoABM() {};
+	
+	private static EventoABM getInstance() {
+		if(instance == null) {
+			instance = new EventoABM();
+		}
+		return instance;
+	}
+	
+	public List<Evento> traer(){
+		return EventoABM.getInstance().traer();
+	}
+	
+	public List<Evento> traer(Dispositivo dispositivo, LocalDateTime fechaHora){
+		return EventoABM.getInstance().traer(dispositivo, fechaHora);
+	}
+	
+}

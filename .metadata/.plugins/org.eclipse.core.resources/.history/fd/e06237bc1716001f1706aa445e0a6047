@@ -1,0 +1,31 @@
+package dao;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public class DispositivoDAO {
+	private static Session session;
+	private Transaction transaction;
+	private DispositivoDAO instance;
+	
+	DispositivoDAO getInstance() {
+		if(instance == null) {
+			instance = new DispositivoDAO();
+		}
+		return instance;
+	}
+
+	protected void iniciaOperacion() throws HibernateException {
+		session = HibernateUtil.getSessionFactory().openSession();
+		transaction = session.beginTransaction();
+	}
+
+	protected void manejaExcepcion(HibernateException he) throws HibernateException {
+		transaction.rollback();
+		throw new HibernateException("ERROR en la capa de acceso a datos", he);
+	}
+	
+	
+	
+}

@@ -1,0 +1,12 @@
+package test;
+
+import negocio.DispositivoABM;
+
+public class TestOO2Tema1 {
+
+	public static void main(String[] args) {
+		System.out.println("\n1)" + DispositivoABM.getInstance().traer());
+
+	}
+
+}

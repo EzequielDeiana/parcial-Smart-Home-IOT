@@ -1,0 +1,25 @@
+INDEX VERSION 1.134+D:\Estudio Universidad\Estudio 2024 Primer Cuatri\Orientacion a Objetos 2\parcial iot\.metadata\.plugins\org.eclipse.jdt.core
+1573320402.index
+1385455076.index
+1935956476.index
+3090306109.index
+2661944363.index
+1223421939.index
+2077857677.index
+4171010620.index
+4026770544.index
+4147091210.index
+3209232670.index
+454970522.index
+1327328909.index
+972159322.index
+410832820.index
+3891843177.index
+3775512470.index
+3281160374.index
+1865797976.index
+34524411.index
+1426823409.index
+2577178331.index
+1696264553.index
+3699239017.index

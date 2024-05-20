@@ -1,0 +1,8 @@
+package datos;
+
+import java.time.LocalTime;
+
+public class SensorCortinaVentana extends Dispositivo{
+	private LocalTime aperturaDesde;
+	private LocalTime aperturaHasta;
+}

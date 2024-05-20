@@ -1,0 +1,13 @@
+package negocio;
+
+public class EventoABM {
+	private EventoABM instance;
+	
+	private EventoABM getInstance() {
+		if(instance == null) {
+			instance = new EventoABM();
+		}
+		return instance;
+	}
+	
+}

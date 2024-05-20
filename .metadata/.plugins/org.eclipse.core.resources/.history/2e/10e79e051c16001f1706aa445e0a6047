@@ -1,0 +1,22 @@
+package negocio;
+
+import java.util.List;
+
+import datos.Dispositivo;
+
+public class DispositivoABM {
+	public static DispositivoABM instance;
+	
+	private DispositivoABM() {};
+	
+	private static DispositivoABM getInstance() {
+		if(instance == null) {
+			instance = new DispositivoABM();
+		}
+		return instance;
+	}
+	
+	public List<Dispositivo> traer(){
+		return DispositivoABM.getInstance().traer();
+	}
+}

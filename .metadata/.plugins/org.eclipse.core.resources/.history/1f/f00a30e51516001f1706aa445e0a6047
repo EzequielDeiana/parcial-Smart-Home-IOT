@@ -1,0 +1,16 @@
+package datos;
+
+public class SensorTemperatura {
+	private double valorMinimo;
+	private double valorMaximo;
+	
+	public SensorTemperatura() {}
+
+	public SensorTemperatura(double valorMinimo, double valorMaximo, String nombre, boolean activo) {
+		super(nombre, activo);
+		this.valorMinimo = valorMinimo;
+		this.valorMaximo = valorMaximo;
+	};
+	
+	
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" " http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Dispositivo" table="dispositivo">
+		<id column="iddispositivo" name="idDispositivo">
+			<generator class="identity" />
+		</id>
+		
+		<property name="nombre" column="nombre" type="string" />
+		<property name="activo" column="activo" type="boolean" />
+		
+		<set name="eventos" table="evento" order-by="idevento" inverse="true" lazy="true" fetch="select" >
+			<key column="idDispositivo" not-null="true"></key>
+			<one-to-many class="datos.Evento"/>
+		</set>
+		
+		<joined-subclass name="datos.SensorCortinaVentana" table="sensorcortinaventana">
+			<key column="idsensor" />
+			<property column="aperturadesde" name="aperturaDesde" type="LocalTime" />
+			<property column="aperturahasta" name="aperturaHasta" type="LocalTime" />
+		</joined-subclass>
+		
+		<joined-subclass name="datos.SensorTemperatura" table="sensortemperatura">
+			<key column="idsensor" />
+			<property column="valorminimo" name="valorMinimo" type="double" />
+			<property column="valormaximo" name="valorMaximo" type="double" />
+		</joined-subclass>
+
+		
+	</class>
+</hibernate-mapping>

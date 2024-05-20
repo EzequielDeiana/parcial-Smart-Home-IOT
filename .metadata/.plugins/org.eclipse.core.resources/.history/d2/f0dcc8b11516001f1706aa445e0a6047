@@ -1,0 +1,19 @@
+package datos;
+
+import java.time.LocalTime;
+
+public class SensorCortinaVentana extends Dispositivo{
+	private LocalTime aperturaDesde;
+	private LocalTime aperturaHasta;
+	
+	public SensorCortinaVentana() {}
+
+	public SensorCortinaVentana(LocalTime aperturaDesde, LocalTime aperturaHasta, String nombre, boolean activo) {
+		super();
+		this.aperturaDesde = aperturaDesde;
+		this.aperturaHasta = aperturaHasta;
+	}
+	
+	
+	
+}
